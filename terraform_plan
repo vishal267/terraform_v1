@@ -1,0 +1,251 @@
+Terraform will perform the following actions:
+
+  + aws_alb_listener.listener_http
+      id:                                          <computed>
+      arn:                                         <computed>
+      default_action.#:                            "1"
+      default_action.0.order:                      <computed>
+      default_action.0.target_group_arn:           "${aws_alb_target_group.group.arn}"
+      default_action.0.type:                       "forward"
+      load_balancer_arn:                           "${aws_lb.example.arn}"
+      port:                                        "80"
+      protocol:                                    "HTTP"
+      ssl_policy:                                  <computed>
+
+  + aws_alb_listener.listener_https
+      id:                                          <computed>
+      arn:                                         <computed>
+      certificate_arn:                             "arn"
+      default_action.#:                            "1"
+      default_action.0.order:                      <computed>
+      default_action.0.target_group_arn:           "${aws_alb_target_group.group.arn}"
+      default_action.0.type:                       "forward"
+      load_balancer_arn:                           "${aws_lb.example.arn}"
+      port:                                        "443"
+      protocol:                                    "HTTPS"
+      ssl_policy:                                  "ELBSecurityPolicy-2016-08"
+
+  + aws_alb_target_group.group
+      id:                                          <computed>
+      arn:                                         <computed>
+      arn_suffix:                                  <computed>
+      deregistration_delay:                        "300"
+      health_check.#:                              "1"
+      health_check.0.healthy_threshold:            "3"
+      health_check.0.interval:                     "30"
+      health_check.0.matcher:                      <computed>
+      health_check.0.path:                         "/login"
+      health_check.0.port:                         "80"
+      health_check.0.protocol:                     "HTTP"
+      health_check.0.timeout:                      <computed>
+      health_check.0.unhealthy_threshold:          "3"
+      name:                                        "terraform-example-alb-target"
+      port:                                        "80"
+      protocol:                                    "HTTP"
+      proxy_protocol_v2:                           "false"
+      slow_start:                                  "0"
+      stickiness.#:                                "1"
+      stickiness.0.cookie_duration:                "86400"
+      stickiness.0.enabled:                        "true"
+      stickiness.0.type:                           "lb_cookie"
+      target_type:                                 "instance"
+      vpc_id:                                      "${aws_vpc.vpc.id}"
+
+  + aws_autoscaling_group.example
+      id:                                          <computed>
+      arn:                                         <computed>
+      availability_zones.#:                        "6"
+      availability_zones.1252502072:               "us-east-1f"
+      availability_zones.1305112097:               "us-east-1b"
+      availability_zones.2762590996:               "us-east-1d"
+      availability_zones.3551460226:               "us-east-1e"
+      availability_zones.3569565595:               "us-east-1a"
+      availability_zones.986537655:                "us-east-1c"
+      default_cooldown:                            <computed>
+      desired_capacity:                            <computed>
+      force_delete:                                "false"
+      health_check_grace_period:                   "300"
+      health_check_type:                           "ELB"
+      launch_configuration:                        "${aws_launch_configuration.example.id}"
+      load_balancers.#:                            "1"
+      load_balancers.3603464733:                   "terraform-asg-example"
+      max_size:                                    "1"
+      metrics_granularity:                         "1Minute"
+      min_size:                                    "1"
+      name:                                        <computed>
+      protect_from_scale_in:                       "false"
+      service_linked_role_arn:                     <computed>
+      target_group_arns.#:                         <computed>
+      vpc_zone_identifier.#:                       <computed>
+      wait_for_capacity_timeout:                   "10m"
+
+  + aws_internet_gateway.igw
+      id:                                          <computed>
+      owner_id:                                    <computed>
+      vpc_id:                                      "${aws_vpc.vpc.id}"
+
+  + aws_launch_configuration.example
+      id:                                          <computed>
+      associate_public_ip_address:                 "false"
+      ebs_block_device.#:                          <computed>
+      ebs_optimized:                               <computed>
+      enable_monitoring:                           "true"
+      image_id:                                    "ami-2d39803a"
+      instance_type:                               "t2.micro"
+      key_name:                                    <computed>
+      name:                                        <computed>
+      root_block_device.#:                         <computed>
+      security_groups.#:                           <computed>
+      user_data:                                   "4430fd6498339061effa6d27ccf341a1e94569d7"
+
+  + aws_lb.example
+      id:                                          <computed>
+      access_logs.#:                               <computed>
+      arn:                                         <computed>
+      arn_suffix:                                  <computed>
+      dns_name:                                    <computed>
+      enable_deletion_protection:                  "true"
+      enable_http2:                                "true"
+      idle_timeout:                                "60"
+      internal:                                    "false"
+      ip_address_type:                             <computed>
+      load_balancer_type:                          "application"
+      name:                                        "terraform-asg-example"
+      security_groups.#:                           <computed>
+      subnet_mapping.#:                            <computed>
+      subnets.#:                                   <computed>
+      vpc_id:                                      <computed>
+      zone_id:                                     <computed>
+
+  + aws_route_table.rtb
+      id:                                          <computed>
+      owner_id:                                    <computed>
+      propagating_vgws.#:                          <computed>
+      route.#:                                     "1"
+      route.~3624129189.cidr_block:                "0.0.0.0/0"
+      route.~3624129189.egress_only_gateway_id:    ""
+      route.~3624129189.gateway_id:                "${aws_internet_gateway.igw.id}"
+      route.~3624129189.instance_id:               ""
+      route.~3624129189.ipv6_cidr_block:           ""
+      route.~3624129189.nat_gateway_id:            ""
+      route.~3624129189.network_interface_id:      ""
+      route.~3624129189.transit_gateway_id:        ""
+      route.~3624129189.vpc_peering_connection_id: ""
+      vpc_id:                                      "${aws_vpc.vpc.id}"
+
+  + aws_route_table_association.rta-subnet1
+      id:                                          <computed>
+      route_table_id:                              "${aws_route_table.rtb.id}"
+      subnet_id:                                   "${aws_subnet.subnet1.id}"
+
+  + aws_route_table_association.rta-subnet2
+      id:                                          <computed>
+      route_table_id:                              "${aws_route_table.rtb.id}"
+      subnet_id:                                   "${aws_subnet.subnet2.id}"
+
+  + aws_security_group.elb
+      id:                                          <computed>
+      arn:                                         <computed>
+      description:                                 "Managed by Terraform"
+      egress.#:                                    "1"
+      egress.482069346.cidr_blocks.#:              "1"
+      egress.482069346.cidr_blocks.0:              "0.0.0.0/0"
+      egress.482069346.description:                ""
+      egress.482069346.from_port:                  "0"
+      egress.482069346.ipv6_cidr_blocks.#:         "0"
+      egress.482069346.prefix_list_ids.#:          "0"
+      egress.482069346.protocol:                   "-1"
+      egress.482069346.security_groups.#:          "0"
+      egress.482069346.self:                       "false"
+      egress.482069346.to_port:                    "0"
+      ingress.#:                                   "1"
+      ingress.2214680975.cidr_blocks.#:            "1"
+      ingress.2214680975.cidr_blocks.0:            "0.0.0.0/0"
+      ingress.2214680975.description:              ""
+      ingress.2214680975.from_port:                "80"
+      ingress.2214680975.ipv6_cidr_blocks.#:       "0"
+      ingress.2214680975.prefix_list_ids.#:        "0"
+      ingress.2214680975.protocol:                 "tcp"
+      ingress.2214680975.security_groups.#:        "0"
+      ingress.2214680975.self:                     "false"
+      ingress.2214680975.to_port:                  "80"
+      name:                                        "terraform-example-elb"
+      owner_id:                                    <computed>
+      revoke_rules_on_delete:                      "false"
+      vpc_id:                                      <computed>
+
+  + aws_security_group.instance
+      id:                                          <computed>
+      arn:                                         <computed>
+      description:                                 "Managed by Terraform"
+      egress.#:                                    <computed>
+      ingress.#:                                   "1"
+      ingress.516175195.cidr_blocks.#:             "1"
+      ingress.516175195.cidr_blocks.0:             "0.0.0.0/0"
+      ingress.516175195.description:               ""
+      ingress.516175195.from_port:                 "8080"
+      ingress.516175195.ipv6_cidr_blocks.#:        "0"
+      ingress.516175195.prefix_list_ids.#:         "0"
+      ingress.516175195.protocol:                  "tcp"
+      ingress.516175195.security_groups.#:         "0"
+      ingress.516175195.self:                      "false"
+      ingress.516175195.to_port:                   "8080"
+      name:                                        "terraform-example-instance"
+      owner_id:                                    <computed>
+      revoke_rules_on_delete:                      "false"
+      vpc_id:                                      <computed>
+
+  + aws_subnet.subnet1
+      id:                                          <computed>
+      arn:                                         <computed>
+      assign_ipv6_address_on_creation:             "false"
+      availability_zone:                           "us-east-1a"
+      availability_zone_id:                        <computed>
+      cidr_block:                                  "10.1.0.0/24"
+      ipv6_cidr_block:                             <computed>
+      ipv6_cidr_block_association_id:              <computed>
+      map_public_ip_on_launch:                     "true"
+      owner_id:                                    <computed>
+      vpc_id:                                      "${aws_vpc.vpc.id}"
+
+  + aws_subnet.subnet2
+      id:                                          <computed>
+      arn:                                         <computed>
+      assign_ipv6_address_on_creation:             "false"
+      availability_zone:                           "us-east-1b"
+      availability_zone_id:                        <computed>
+      cidr_block:                                  "10.1.1.0/24"
+      ipv6_cidr_block:                             <computed>
+      ipv6_cidr_block_association_id:              <computed>
+      map_public_ip_on_launch:                     "true"
+      owner_id:                                    <computed>
+      vpc_id:                                      "${aws_vpc.vpc.id}"
+
+  + aws_vpc.vpc
+      id:                                          <computed>
+      arn:                                         <computed>
+      assign_generated_ipv6_cidr_block:            "false"
+      cidr_block:                                  "10.1.0.0/16"
+      default_network_acl_id:                      <computed>
+      default_route_table_id:                      <computed>
+      default_security_group_id:                   <computed>
+      dhcp_options_id:                             <computed>
+      enable_classiclink:                          <computed>
+      enable_classiclink_dns_support:              <computed>
+      enable_dns_hostnames:                        <computed>
+      enable_dns_support:                          "true"
+      instance_tenancy:                            "default"
+      ipv6_association_id:                         <computed>
+      ipv6_cidr_block:                             <computed>
+      main_route_table_id:                         <computed>
+      owner_id:                                    <computed>
+
+
+Plan: 15 to add, 0 to change, 0 to destroy.
+
+------------------------------------------------------------------------
+
+Note: You didn't specify an "-out" parameter to save this plan, so Terraform
+can't guarantee that exactly these actions will be performed if
+"terraform apply" is subsequently run.
+

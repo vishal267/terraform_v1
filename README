@@ -1,0 +1,19 @@
+#
+
+
+terraform init 
+terraform plan 
+
+access key 
+secret key 
+Key path 
+
+terraform --apply 
+
+
+
+###Limitation - 
+
+1 - Not used assumed role and Route 53
+2 - Can implement modules 
+
